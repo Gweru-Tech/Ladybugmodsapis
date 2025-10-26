@@ -1,11 +1,11 @@
 {
   "name": "Ladybug Mods Api's",
   "version": "v2",
-  "description": "Simple rest api by Hookrest.",
+  "description": "Simple rest api by Ntando Mods.",
   "header": {
     "status": "Online!",
     "imageSrc": [
-      "https://qu.ax/rGkeW.jpg"
+      "https://files.catbox.moe/rw141a.jpeg"
     ],
     "imageSize": {
       "mobile": "50%",
@@ -14,7 +14,7 @@
     }
   },
   "apiSettings": {
-    "creator": "Danz-dev"
+    "creator": "Ntando Mods"
   },
   "links": [
     {
