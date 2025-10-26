@@ -1,0 +1,179 @@
+{
+  "name": "Ladybug Mods Api's",
+  "version": "v2",
+  "description": "Simple rest api by Hookrest.",
+  "header": {
+    "status": "Online!",
+    "imageSrc": [
+      "https://qu.ax/rGkeW.jpg"
+    ],
+    "imageSize": {
+      "mobile": "50%",
+      "tablet": "40%",
+      "desktop": "40%"
+    }
+  },
+  "apiSettings": {
+    "creator": "Danz-dev"
+  },
+  "links": [
+    {
+      "name": "Source Code",
+      "url": "https://whatsapp.com/channel/0029VbB89FX9sBIFviBQ5J15"
+    },
+    {
+      "name": "Contact Me",
+      "url": "https://wa.me/263777124998"
+    }
+  ],
+  "categories": [
+    {
+      "name": "AI (Artificial Intelligence)",
+      "items": [
+        {
+          "name": "Chatgpt",
+          "desc": "Talk with Chatgpt",
+          "path": "/ai/chatgpt?question="
+        },
+        {
+          "name": "Chatbot",
+          "desc": "Talk with Chatbot ai",
+          "path": "/api/ai?question="
+        },
+        {
+          "name": "Kimi",
+          "desc": "Talk with Kimi-ai",
+          "path": "/ai/kimi?q="
+        }
+      ]
+    },
+    {
+      "name": "Islami",
+      "items": [
+        {
+          "name": "Jadwal Sholat",
+          "desc": "Jadwal sholat seluruh dunia",
+          "path": "/islami/jadwalsholat?city="
+        },
+        {
+          "name": "Random Hadist",
+          "desc": "Hadist",
+          "path": "/islami/hadits/random"
+        }
+      ]
+    },
+    {
+      "name": "Tools",
+      "items": [
+        {
+          "name": "Text2img",
+          "desc": "Prompt to img style",
+          "path": "/tools/text2img?prompt="
+        },
+        {
+          "name": "To Ghibli",
+          "desc": "Note : dapat down sewaktu-waktu",
+          "path": "/api/ghibli?imageUrl="
+        },
+        {
+          "name": "Ssweb",
+          "desc": "Screenshot website",
+          "path": "/tools/screenshot?url="
+        }
+      ]
+    },
+    {
+      "name": "Random",
+      "items": [
+        {
+          "name": "Loli",
+          "desc": "Loli Random Images",
+          "path": "/random/loli"
+        },
+        {
+          "name": "Blue Archive",
+          "desc": "Blue Archive Random Images",
+          "path": "/random/ba"
+        }
+      ]
+    },
+    {
+      "name": "Search Tools",
+      "items": [
+        {
+          "name": "YouTube",
+          "desc": "Youtube search",
+          "path": "/search/youtube?q="
+        },
+        {
+          "name": "Resep",
+          "desc": "Get resep makanan by cookpad",
+          "path": "/search/resep?q="
+        },
+        {
+          "name": "Lyrics",
+          "desc": "Lirik search",
+          "path": "/search/lyrics?title="
+        },
+        {
+          "name": "Douyin",
+          "desc": "Douyin search",
+          "path": "/douyin/search?keyword="
+        }
+      ]
+    },
+    {
+      "name": "Downloader",
+      "items": [
+        {
+          "name": "Ytmp3",
+          "desc": "Download youtube format mp3",
+          "path": "/api/ytmp3?url="
+        },
+        {
+          "name": "Ytdl mp3/mp4",
+          "desc": "Download youtube format mp3/320p,720p,1080p",
+          "path": "/api/ytdl?url=&format="
+        },
+        {
+          "name": "Ytmp4",
+          "desc": "Download youtube format mp4",
+          "path": "/api/ytmp4?url="
+        },
+        {
+          "name": "Play",
+          "desc": "Play youtube format mp3",
+          "path": "/dl/yt/play?query="
+        }
+      ]
+    },
+    {
+      "name": "Info",
+      "items": [
+        {
+          "name": "Jadwal tv",
+          "desc": "Cari Jadwal Tv",
+          "path": "/info/jadwaltv?channel="
+        },
+        {
+          "name": "Jadwal Bola",
+          "desc": "Info Tentang Bola",
+          "path": "/info/bola"
+        }
+      ]
+    },
+    {
+      "name": "Status",
+      "items": [
+        {
+          "name": "Info status",
+          "desc": "Cek status api",
+          "path": "/api/status"
+        }
+      ]
+    }
+  ],
+  "maintenance": {
+    "enabled": false
+  }
+}
