@@ -3,7 +3,7 @@ const os = require('os');
 module.exports = function (app) {
     const startTime = Date.now();
     let totalRequest = 0;
-    const domain = 'hookrest.my.id';
+    const domain = 'https://ladybugmodsapis.vercel.app/';
 
     function formatRuntime(ms) {
         const seconds = Math.floor(ms / 1000);
@@ -29,7 +29,7 @@ module.exports = function (app) {
             status: true,
             creator: "Ladybug-modsapis",
             result: {
-                status: "Aktif",
+                status: "online",
                 totalrequest: totalRequest.toString(),
                 totalfitur: totalFitur.toString(),
                 runtime,
