@@ -311,7 +311,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         
         const parentPane = this.closest(".tab-content-wrapper") || this.closest(".modal-body");
         if (parentPane) {
-                    parentPane.querySelectorAll(paneClass).forEach((pane) => pane.classList.remove("active"));
+          parentPane.querySelectorAll(paneClass).forEach((pane) => pane.classList.remove("active"));
           const activePane = document.getElementById(tabId);
           if (activePane) activePane.classList.add("active");
         }
@@ -530,7 +530,7 @@ function blobToBase64(blob) {
   });
 }
 
-// Handle API request
+// Handle API request - FIXED VERSION
 async function handleApiRequest(apiUrl, apiName) {
   const apiResponseCode = document.getElementById("apiResponseCode");
   const apiResponseBody = document.getElementById("apiResponseBody");
@@ -574,12 +574,20 @@ async function handleApiRequest(apiUrl, apiName) {
 
     const contentType = response.headers.get("Content-Type") || "";
 
+    // Clone response BEFORE reading it - this is the fix!
+    const responseClone = response.clone();
+
     if (!response.ok) {
       try {
-        const errorData = await response.json();
+        const errorData = await responseClone.json();
         apiResponseBody.textContent = JSON.stringify(errorData, null, 2);
       } catch (e) {
-        apiResponseBody.textContent = await response.text();
+        try {
+          const errorText = await response.text();
+          apiResponseBody.textContent = errorText || `Error: $${response.status}$$ {response.statusText}`;
+        } catch (textError) {
+          apiResponseBody.textContent = `Error: $${response.status}$$ {response.statusText}`;
+        }
       }
       showToast(`Request failed with status ${response.status}`, "error");
       return;
@@ -615,11 +623,18 @@ async function handleApiRequest(apiUrl, apiName) {
       apiResponseBody.textContent = JSON.stringify(data, null, 2);
       showToast("Request successful!", "success");
     } else if (contentType.startsWith("text/")) {
-      apiResponseBody.textContent = await response.text();
+      const textData = await response.text();
+      apiResponseBody.textContent = textData;
       showToast("Request successful!", "success");
     } else {
-      apiResponseBody.textContent = "Preview for this content type is not available.";
-      showToast("Response received but preview unavailable", "success");
+      // For unknown content types, try to read as text
+      try {
+        const textData = await response.text();
+        apiResponseBody.textContent = textData || "Preview for this content type is not available.";
+      } catch (e) {
+        apiResponseBody.textContent = "Preview for this content type is not available.";
+      }
+      showToast("Response received but preview may be limited", "success");
     }
   } catch (error) {
     apiResponseCode.textContent = "Error";
@@ -675,7 +690,7 @@ document.addEventListener("keydown", (e) => {
 // Add loading states for better UX
 document.addEventListener("click", (e) => {
   const button = e.target.closest("button");
-  if (button && button.type === "submit") {
+  if (button && button.type === "submit" && !button.classList.contains("toast-close")) {
     const originalText = button.innerHTML;
     button.disabled = true;
     button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
