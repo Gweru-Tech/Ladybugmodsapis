@@ -1,0 +1,48 @@
+services:
+  # Web Service
+  - type: web
+    name: api-hub
+    env: node
+    plan: free
+    buildCommand: "npm install"
+    startCommand: "npm start"
+    healthCheckPath: "/health"
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+    autoDeploy: true
+    
+  # PostgreSQL Database (optional for future use)
+  - type: pserv
+    name: api-hub-db
+    plan: free
+    env: docker
+    dockerfilePath: ./Dockerfile.db
+    disk:
+      name: api-hub-db-disk
+      mountPath: /var/lib/postgresql/data
+      sizeGB: 1
+
+# Environment variables
+environment:
+  NODE_ENV: production
+  PORT: 10000
+  ALLOWED_ORIGINS: "https://api-hub.onrender.com,https://www.api-hub.onrender.com"
+
+# Build configuration
+build:
+  commands:
+    - npm install
+    - npm run build
+
+# Start command
+start:
+  command: npm start
+
+# Health check
+healthCheck:
+  path: /health
+  interval: 30s
+  timeout: 10s
