@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Documentation - API Hub</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .docs-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 100px 1rem 2rem;
+        }
+        
+        .docs-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .docs-nav {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow-md);
+            position: sticky;
+            top: 80px;
+            z-index: 100;
+        }
+        
+        .docs-nav ul {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .docs-nav a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius-md);
+            transition: all 0.3s ease;
+        }
+        
+        .docs-nav a:hover {
+            background: var(--bg-light);
+            color: var(--primary-color);
+        }
+        
+        .api-section {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow-md);
+        }
+        
+        .api-section h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .endpoint {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: var(--bg-light);
+            border-radius: var(--radius-md);
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .endpoint h3 {
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 600;
+        }
+        
+        .method {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            font-size: 0.875rem;
+            margin-right: 0.5rem;
+        }
+        
+        .method.post {
+            background: #48bb78;
+            color: white;
+        }
+        
+        .method.get {
+            background: #4299e1;
+            color: white;
+        }
+        
+        .endpoint-url {
+            font-family: 'JetBrains Mono', monospace;
+            background: white;
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius-sm);
+            margin: 0.5rem 0;
+            border: 1px solid var(--border-color);
+        }
+        
+        .params-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+        
+        .params-table th,
+        .params-table td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .params-table th {
+            background: var(--bg-light);
+            font-weight: 600;
+        }
+        
+        .code-block {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 1.5rem;
+            border-radius: var(--radius-md);
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+        
+        .code-block pre {
+            margin: 0;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.875rem;
+            line-height: 1.5;
+        }
+        
+        .response-example {
+            background: #1a202c;
+            border-left: 4px solid var(--secondary-color);
+        }
+        
+        .required {
+            color: #e53e3e;
+            font-weight: 600;
+        }
+        
+        .optional {
+            color: var(--text-light);
+        }
+        
+        .rate-limit {
+            background: #fef5e7;
+            border: 1px solid #f9e79f;
+            border-radius: var(--radius-md);
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .rate-limit i {
+            color: var(--accent-color);
+            margin-right: 0.5rem;
+        }
+        
+        @media (max-width: 768px) {
+            .docs-nav {
+                position: static;
+            }
+            
+            .docs-nav ul {
+                flex-direction: column;
+            }
+            
+            .endpoint-url {
+                font-size: 0.875rem;
+                word-break: break-all;
+            }
+        }
+    </style>
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-rocket"></i>
+                <span>API Hub</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="/">Home</a></li>
+                <li><a href="/docs">Documentation</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="nav-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <div class="docs-container">
+        <!-- Documentation Header -->
+        <div class="docs-header">
+            <h1>API Documentation</h1>
+            <p>Comprehensive documentation for all API Hub endpoints</p>
+            <div class="rate-limit">
+                <i class="fas fa-exclamation-triangle"></i>
+                <strong>Rate Limiting:</strong> 100 requests per 15 minutes per IP address
+            </div>
+        </div>
+
+        <!-- Documentation Navigation -->
+        <div class="docs-nav">
+            <ul>
+                <li><a href="#authentication">Authentication</a></li>
+                <li><a href="#download">Download APIs</a></li>
+                <li><a href="#ai">AI APIs</a></li>
+                <li><a href="#youtube">YouTube APIs</a></li>
+                <li><a href="#tools">Tools APIs</a></li>
+                <li><a href="#image">Image APIs</a></li>
+                <li><a href="#nsf">NSF APIs</a></li>
+                <li><a href="#imagine">Imagine APIs</a></li>
+                <li><a href="#business">Business APIs</a></li>
+            </ul>
+        </div>
+
+        <!-- Authentication Section -->
+        <section id="authentication" class="api-section">
+            <h2><i class="fas fa-lock"></i> Authentication</h2>
+            <p>Currently, all APIs are open and don't require authentication. API keys will be introduced in future versions for premium features.</p>
+            
+            <div class="endpoint">
+                <h3><span class="method get">GET</span> Health Check</h3>
+                <div class="endpoint-url">GET /health</div>
+                <p>Check if the API server is running and get system information.</p>
+                
+                <h4>Response Example:</h4>
+                <div class="code-block response-example">
+                    <pre>{
+  "status": "OK",
+  "timestamp": "2024-01-15T10:30:00.000Z",
+  "uptime": 3600,
+  "version": "1.0.0"
+}</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Download APIs Section -->
+        <section id="download" class="api-section">
+            <h2><i class="fas fa-download"></i> Download APIs</h2>
+            <p>Endpoints for file downloads, URL validation, and batch processing.</p>
+            
+            <div class="endpoint">
+                <h3><span class="method post">POST</span> File Download Info</h3>
+                <div class="endpoint-url">POST /api/download/file</div>
+                <p>Get information about a downloadable file from a URL.</p>
+                
+                <h4>Request Parameters:</h4>
+                <table class="params-table">
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Type</th>
+                            <th>Required</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>url</code></td>
+                            <td>string</td>
+                            <td class="required">Yes</td>
+                            <td>Valid URL of the file to analyze</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h4>Request Example:</h4>
+                <div class="code-block">
+                    <pre>curl -X POST https://api-hub.onrender.com/api/download/file \
+  -H "Content-Type: application/json" \
+  -d '{"url": "https://example.com/file.pdf"}'</pre>
+                </div>
+                
+                <h4>Response Example:</h4>
+                <div class="code-block response-example">
+                    <pre>{
+  "success": true,
+  "url": "https://example.com/file.pdf",
+  "fileInfo": {
+    "size": "1048576",
+    "type": "application/pdf",
+    "downloadable": true
+  },
+  "downloadUrl": "https://example.com/file.pdf"
+}</pre>
+                </div>
+            </div>
+            
+            <div class="endpoint">
+                <h3><span class="method post">POST</span> Batch URL Processing</h3>
+                <div class="endpoint-url">POST /api/download/batch</div>
+                <p>Process multiple URLs simultaneously (1-10 URLs).</p>
+                
+                <h4>Request Parameters:</h4>
+                <table class="params-table">
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Type</th>
+                            <th>Required</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>urls</code></td>
+                            <td>array</td>
+                            <td class="required">Yes</td>
+                            <td>Array of URLs to process (max 10)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- AI APIs Section -->
+        <section id="ai" class="api-section">
+            <h2><i class="fas fa-brain"></i> AI APIs</h2>
+            <p>Artificial Intelligence powered text processing endpoints.</p>
+            
+            <div class="endpoint">
+                <h3><span class="method post">POST</span> Text Summarization</h3>
+                <div class="endpoint-url">POST /api/ai/summarize</div>
+                <p>Generate a summary of the provided text.</p>
+                
+                <h4>Request Parameters:</h4>
+                <table class="params-table">
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Type</th>
+                            <th>Required</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>text</code></td>
+                            <td>string</td>
+                            <td class="required">Yes</td>
+                            <td>Text to summarize</td>
+                        </tr>
+                        <tr>
+                            <td><code>length</code></td>
+                            <td>string</td>
+                            <td class="optional">No</td>
+                            <td>Summary length: short, medium, long (default: medium)</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h4>Request Example:</h4>
+                <div class="code-block">
+                    <pre>curl -X POST https://api-hub.onrender.com/api/ai/summarize \
+  -H "Content-Type: application/json" \
+  -d '{
+    "text": "Your long text here...",
+    "length": "medium"
+  }'</pre>
+                </div>
+            </div>
+            
+            <div class="endpoint">
+                <h3><span class="method post">POST</span> Sentiment Analysis</h3>
+                <div class="endpoint-url">POST /api/ai/sentiment</div>
+                <p>Analyze the sentiment and emotions in text.</p>
+                
+                <h4>Request Parameters:</h4>
+                <table class="params-table">
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Type</th>
+                            <th>Required</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>text</code></td>
+                            <td>string</td>
+                            <td class="required">Yes</td>
+                            <td>Text to analyze</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="endpoint">
+                <h3><span class="method post">POST</span> Text Generation</h3>
+                <div class="endpoint-url">POST /api/ai/generate</div>
+                <p>Generate text based on a prompt.</p>
+                
+                <h4>Request Parameters:</h4>
+                <table class="params-table">
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Type</th>
+                            <th>Required</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>prompt</code></td>
+                            <td>string</td>
+                            <td class="required">Yes</td>
+                            <td>Prompt for text generation</td>
+                        </tr>
+                        <tr>
+                            <td><code>maxLength</code></td>
+                            <td>integer</td>
+                            <td class="optional">No</td>
+                            <td>Maximum length of generated text (50-500)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- YouTube APIs Section -->
+        <section id="youtube" class="api-section">
+            <h2><i class="fab fa-youtube"></i> YouTube APIs</h2>
+            <p>Endpoints for YouTube video information and content extraction.</p>
+            
+            <div class="endpoint">
+                <h3><span class="method post">POST</span> Video Information</h3>
+                <div class="endpoint-url">POST /api/youtube/video-info</div>
+                <p>Get detailed information about a YouTube video.</p>
+                
+                <h4>Request Parameters:</h4>
+                <table class="params-table">
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Type</th>
+                            <th>Required</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>videoId</code></td>
+                            <td>string</td>
+                            <td class="required">Yes</td>
+                            <td>YouTube video ID</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="endpoint">
+                <h3><span class="method post">POST</span> Video Transcript</h3>
+                <div class="endpoint-url">POST /api/youtube/transcript</div>
+                <p>Extract the transcript of a YouTube video.</p>
+            </div>
+            
+            <div class="endpoint">
+                <h3><span class="method post">POST</span> Video Search</h3>
+                <div class="endpoint-url">POST /api/youtube/search</div>
+                <p>Search for YouTube videos based on a query.</p>
+                
+                <h4>Request Parameters:</h4>
+                <table class="params-table">
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Type</th>
+                            <th>Required</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>query</code></td>
+                            <td>string</td>
+                            <td class="required">Yes</td>
+                            <td>Search query</td>
+                        </tr>
+                        <tr>
+                            <td><code>maxResults</code></td>
+                            <td>integer</td>
+                            <td class="optional">No</td>
+                            <td>Maximum number of results (1-50)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Tools APIs Section -->
+        <section id="tools" class="api-section">
+            <h2><i class="fas fa-tools"></i> Tools APIs</h2>
+            <p>General utility tools for common tasks.</p>
+            
+            <div class="endpoint">
+                <h3><span class="method post">POST</span> URL Shortener</h3>
+                <div class="endpoint-url">POST /api/tools/shorten-url</div>
+                <p>Create a short URL for a long URL.</p>
+                
+                <h4>Request Parameters:</h4>
+                <table class="params-table">
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Type</th>
+                            <th>Required</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>url</code></td>
+                            <td>string</td>
+                            <td class="required">Yes</td>
+                            <td>URL to shorten</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="endpoint">
+                <h3><span class="method post">POST</span> QR Code Generator</h3>
+                <div class="endpoint-url">POST /api/tools/generate-qr</div>
+                <p>Generate a QR code for text or URL.</p>
+                
+                <h4>Request Parameters:</h4>
+                <table class="params-table">
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Type</th>
+                            <th>Required</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>text</code></td>
+                            <td>string</td>
+                            <td class="required">Yes</td>
+                            <td>Text or URL for QR code</td>
+                        </tr>
+                        <tr>
+                            <td><code>size</code></td>
+                            <td>integer</td>
+                            <td class="optional">No</td>
+                            <td>QR code size (100-500, default: 200)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="endpoint">
+                <h3><span class="method post">POST</span> Password Generator</h3>
+                <div class="endpoint-url">POST /api/tools/generate-password</div>
+                <p>Generate a secure random password.</p>
+            </div>
+        </section>
+
+        <!-- Image APIs Section -->
+        <section id="image" class="api-section">
+            <h2><i class="fas fa-image"></i> Image APIs</h2>
+            <p>Image processing and manipulation endpoints.</p>
+            
+            <div class="endpoint">
+                <h3><span class="method post">POST</span> Image Resize</h3>
+                <div class="endpoint-url">POST /api/image/resize</div>
+                <p>Resize an image to specified dimensions.</p>
+                
+                <h4>Request Parameters:</h4>
+                <table class="params-table">
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Type</th>
+                            <th>Required</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>image</code></td>
+                            <td>file</td>
+                            <td class="required">Yes</td>
+                            <td>Image file to resize</td>
+                        </tr>
+                        <tr>
+                            <td><code>width</code></td>
+                            <td>integer</td>
+                            <td class="optional">No</td>
+                            <td>Target width (1-4000, default: 300)</td>
+                        </tr>
+                        <tr>
+                            <td><code>height</code></td>
+                            <td>integer</td>
+                            <td class="optional">No</td>
+                            <td>Target height (1-4000, default: 300)</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h4>Request Example:</h4>
+                <div class="code-block">
+                    <pre>curl -X POST https://api-hub.onrender.com/api/image/resize \
+  -F "image=@your-image.jpg" \
+  -F "width=800" \
+  -F "height=600"</pre>
+                </div>
+            </div>
+            
+            <div class="endpoint">
+                <h3><span class="method post">POST</span> Image Filter</h3>
+                <div class="endpoint-url">POST /api/image/filter</div>
+                <p>Apply filters to an image.</p>
+                
+                <h4>Available Filters:</h4>
+                <ul>
+                    <li><code>grayscale</code> - Convert to black and white</li>
+                    <li><code>blur</code> - Apply blur effect</li>
+                    <li><code>sharpen</code> - Enhance image sharpness</li>
+                    <li><code>brightness</code> - Increase brightness</li>
+                    <li><code>contrast</code> - Adjust contrast</li>
+                    <li><code>sepia</code> - Apply sepia tone</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- NSF APIs Section -->
+        <section id="nsf" class="api-section">
+            <h2><i class="fas fa-flask"></i> NSF APIs</h2>
+            <p>National Science Foundation data and research information.</p>
+            
+            <div class="endpoint">
+                <h3><span class="method post">POST</span> Search Awards</h3>
+                <div class="endpoint-url">POST /api/nsf/search-awards</div>
+                <p>Search for NSF research awards.</p>
+                
+                <h4>Request Parameters:</h4>
+                <table class="params-table">
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Type</th>
+                            <th>Required</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>keyword</code></td>
+                            <td>string</td>
+                            <td class="optional">No</td>
+                            <td>Search keyword</td>
+                        </tr>
+                        <tr>
+                            <td><code>agency</code></td>
+                            <td>string</td>
+                            <td class="optional">No</td>
+                            <td>NSF agency</td>
+                        </tr>
+                        <tr>
+                            <td><code>year</code></td>
+                            <td>integer</td>
+                            <td class="optional">No</td>
+                            <td>Award year (2000-2024)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="endpoint">
+                <h3><span class="method post">POST</span> Research Trends</h3>
+                <div class="endpoint-url">POST /api/nsf/research-trends</div>
+                <p>Get research trends and statistics.</p>
+            </div>
+        </section>
+
+        <!-- Imagine APIs Section -->
+        <section id="imagine" class="api-section">
+            <h2><i class="fas fa-magic"></i> Imagine APIs</h2>
+            <p>Creative content generation endpoints.</p>
+            
+            <div class="endpoint">
+                <h3><span class="method post">POST</span> Generate Story</h3>
+                <div class="endpoint-url">POST /api/imagine/generate-story</div>
+                <p>Generate a creative story based on a prompt.</p>
+                
+                <h4>Request Parameters:</h4>
+                <table class="params-table">
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Type</th>
+                            <th>Required</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>prompt</code></td>
+                            <td>string</td>
+                            <td class="required">Yes</td>
+                            <td>Story prompt</td>
+                        </tr>
+                        <tr>
+                            <td><code>genre</code></td>
+                            <td>string</td>
+                            <td class="optional">No</td>
+                            <td>Genre: fantasy, scifi, romance, mystery, horror, adventure</td>
+                        </tr>
+                        <tr>
+                            <td><code>length</code></td>
+                            <td>string</td>
+                            <td class="optional">No</td>
+                            <td>Length: short, medium, long</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="endpoint">
+                <h3><span class="method post">POST</span> Generate Poem</h3>
+                <div class="endpoint-url">POST /api/imagine/generate-poem</div>
+                <p>Generate a poem based on theme and style.</p>
+            </div>
+            
+            <div class="endpoint">
+                <h3><span class="method post">POST</span> Create Character</h3>
+                <div class="endpoint-url">POST /api/imagine/generate-character</div>
+                <p>Generate a detailed character description.</p>
+            </div>
+        </section>
+
+        <!-- Business APIs Section -->
+        <section id="business" class="api-section">
+            <h2><i class="fas fa-chart-line"></i> Business APIs</h2>
+            <p>Business data and financial information endpoints.</p>
+            
+            <div class="endpoint">
+                <h3><span class="method post">POST</span> Company Information</h3>
+                <div class="endpoint-url">POST /api/business/company-info</div>
+                <p>Get detailed information about a company.</p>
+                
+                <h4>Request Parameters:</h4>
+                <table class="params-table">
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Type</th>
+                            <th>Required</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>companyName</code></td>
+                            <td>string</td>
+                            <td class="required">Yes</td>
+                            <td>Company name</td>
+                        </tr>
+                        <tr>
+                            <td><code>ticker</code></td>
+                            <td>string</td>
+                            <td class="optional">No</td>
+                            <td>Stock ticker symbol</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="endpoint">
+                <h3><span class="method post">POST</span> Stock Data</h3>
+                <div class="endpoint-url">POST /api/business/stock-data</div>
+                <p>Get historical stock price data.</p>
+            </div>
+            
+            <div class="endpoint">
+                <h3><span class="method post">POST</span> Financial Ratios</h3>
+                <div class="endpoint-url">POST /api/business/financial-ratios</div>
+                <p>Get financial ratios for a company.</p>
+            </div>
+        </section>
+
+        <!-- Error Handling Section -->
+        <section class="api-section">
+            <h2><i class="fas fa-exclamation-triangle"></i> Error Handling</h2>
+            <p>APIs return standard HTTP status codes and JSON error responses.</p>
+            
+            <h4>Common Status Codes:</h4>
+            <table class="params-table">
+                <thead>
+                    <tr>
+                        <th>Code</th>
+                        <th>Meaning</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>200</code></td>
+                        <td>Success</td>
+                    </tr>
+                    <tr>
+                        <td><code>400</code></td>
+                        <td>Bad Request - Invalid parameters</td>
+                    </tr>
+                    <tr>
+                        <td><code>429</code></td>
+                        <td>Too Many Requests - Rate limit exceeded</td>
+                    </tr>
+                    <tr>
+                        <td><code>500</code></td>
+                        <td>Internal Server Error</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h4>Error Response Format:</h4>
+            <div class="code-block response-example">
+                <pre>{
+  "error": "Validation Error",
+  "message": "Invalid URL format provided",
+  "details": {
+    "field": "url",
+    "value": "invalid-url"
+  }
+}</pre>
+            </div>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

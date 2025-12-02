@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Hub - Comprehensive API Platform</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-rocket"></i>
+                <span>API Hub</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#apis">APIs</a></li>
+                <li><a href="#docs">Documentation</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="nav-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Powerful APIs for Every Need</h1>
+            <p class="hero-subtitle">Access comprehensive APIs including AI, YouTube, Image Processing, Business Data, and much more</p>
+            <div class="hero-buttons">
+                <a href="#apis" class="btn btn-primary">Explore APIs</a>
+                <a href="#docs" class="btn btn-secondary">View Docs</a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-number">8</span>
+                    <span class="stat-label">API Categories</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">50+</span>
+                    <span class="stat-label">Endpoints</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">99.9%</span>
+                    <span class="stat-label">Uptime</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">100K+</span>
+                    <span class="stat-label">Requests/day</span>
+                </div>
+            </div>
+        </div>
+        <div class="hero-image">
+            <div class="code-block">
+                <pre><code>const response = await fetch('/api/ai/summarize', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ text: 'Your text here' })
+});
+const data = await response.json();</code></pre>
+            </div>
+        </div>
+    </section>
+
+    <!-- APIs Section -->
+    <section id="apis" class="apis-section">
+        <div class="container">
+            <h2 class="section-title">Our API Categories</h2>
+            <div class="api-grid">
+                <!-- Download APIs -->
+                <div class="api-card" data-category="download">
+                    <div class="api-icon">
+                        <i class="fas fa-download"></i>
+                    </div>
+                    <h3>Download APIs</h3>
+                    <p>File downloads, video info extraction, batch URL processing</p>
+                    <ul class="api-features">
+                        <li>File Downloads</li>
+                        <li>Video Information</li>
+                        <li>Batch Processing</li>
+                        <li>URL Validation</li>
+                    </ul>
+                    <button class="btn btn-outline" onclick="testAPI('download')">Test API</button>
+                </div>
+
+                <!-- AI APIs -->
+                <div class="api-card" data-category="ai">
+                    <div class="api-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>AI APIs</h3>
+                    <p>Text summarization, sentiment analysis, language detection</p>
+                    <ul class="api-features">
+                        <li>Text Summarization</li>
+                        <li>Sentiment Analysis</li>
+                        <li>Language Detection</li>
+                        <li>Text Generation</li>
+                    </ul>
+                    <button class="btn btn-outline" onclick="testAPI('ai')">Test API</button>
+                </div>
+
+                <!-- YouTube APIs -->
+                <div class="api-card" data-category="youtube">
+                    <div class="api-icon">
+                        <i class="fab fa-youtube"></i>
+                    </div>
+                    <h3>YouTube APIs</h3>
+                    <p>Video info, transcript extraction, channel data, search</p>
+                    <ul class="api-features">
+                        <li>Video Information</li>
+                        <li>Transcript Extraction</li>
+                        <li>Channel Data</li>
+                        <li>Video Search</li>
+                    </ul>
+                    <button class="btn btn-outline" onclick="testAPI('youtube')">Test API</button>
+                </div>
+
+                <!-- Tools APIs -->
+                <div class="api-card" data-category="tools">
+                    <div class="api-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3>Tools APIs</h3>
+                    <p>URL shortener, QR codes, password generator, text utilities</p>
+                    <ul class="api-features">
+                        <li>URL Shortener</li>
+                        <li>QR Code Generator</li>
+                        <li>Password Generator</li>
+                        <li>Text Utilities</li>
+                    </ul>
+                    <button class="btn btn-outline" onclick="testAPI('tools')">Test API</button>
+                </div>
+
+                <!-- Image APIs -->
+                <div class="api-card" data-category="image">
+                    <div class="api-icon">
+                        <i class="fas fa-image"></i>
+                    </div>
+                    <h3>Image APIs</h3>
+                    <p>Image resize, filters, format conversion, optimization</p>
+                    <ul class="api-features">
+                        <li>Image Resizing</li>
+                        <li>Filters & Effects</li>
+                        <li>Format Conversion</li>
+                        <li>Image Optimization</li>
+                    </ul>
+                    <button class="btn btn-outline" onclick="testAPI('image')">Test API</button>
+                </div>
+
+                <!-- NSF APIs -->
+                <div class="api-card" data-category="nsf">
+                    <div class="api-icon">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <h3>NSF APIs</h3>
+                    <p>National Science Foundation data, research awards, trends</p>
+                    <ul class="api-features">
+                        <li>Award Search</li>
+                        <li>Research Trends</li>
+                        <li>Institution Data</li>
+                        <li>Program Information</li>
+                    </ul>
+                    <button class="btn btn-outline" onclick="testAPI('nsf')">Test API</button>
+                </div>
+
+                <!-- Imagine APIs -->
+                <div class="api-card" data-category="imagine">
+                    <div class="api-icon">
+                        <i class="fas fa-magic"></i>
+                    </div>
+                    <h3>Imagine APIs</h3>
+                    <p>Story generation, poetry, character creation, dialogue</p>
+                    <ul class="api-features">
+                        <li>Story Generation</li>
+                        <li>Poetry Creation</li>
+                        <li>Character Design</li>
+                        <li>World Building</li>
+                    </ul>
+                    <button class="btn btn-outline" onclick="testAPI('imagine')">Test API</button>
+                </div>
+
+                <!-- Business APIs -->
+                <div class="api-card" data-category="business">
+                    <div class="api-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Business APIs</h3>
+                    <p>Company data, stock prices, financial ratios, market data</p>
+                    <ul class="api-features">
+                        <li>Company Information</li>
+                        <li>Stock Data</li>
+                        <li>Financial Ratios</li>
+                        <li>Market Analysis</li>
+                    </ul>
+                    <button class="btn btn-outline" onclick="testAPI('business')">Test API</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="container">
+            <h2 class="section-title">Why Choose API Hub?</h2>
+            <div class="features-grid">
+                <div class="feature">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Lightning Fast</h3>
+                    <p>Optimized endpoints with sub-second response times</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Secure & Reliable</h3>
+                    <p>Enterprise-grade security with 99.9% uptime guarantee</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Developer Friendly</h3>
+                    <p>Clear documentation with SDKs for popular languages</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <h3>Detailed Analytics</h3>
+                    <p>Monitor usage and performance with comprehensive analytics</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing-section">
+        <div class="container">
+            <h2 class="section-title">Simple, Transparent Pricing</h2>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Free</h3>
+                    <div class="price">
+                        <span class="currency">$</span>
+                        <span class="amount">0</span>
+                        <span class="period">/month</span>
+                    </div>
+                    <ul class="features">
+                        <li><i class="fas fa-check"></i> 1,000 requests/month</li>
+                        <li><i class="fas fa-check"></i> All API endpoints</li>
+                        <li><i class="fas fa-check"></i> Basic support</li>
+                        <li><i class="fas fa-times"></i> Rate limiting</li>
+                    </ul>
+                    <button class="btn btn-outline">Get Started</button>
+                </div>
+                <div class="pricing-card popular">
+                    <span class="badge">Popular</span>
+                    <h3>Pro</h3>
+                    <div class="price">
+                        <span class="currency">$</span>
+                        <span class="amount">49</span>
+                        <span class="period">/month</span>
+                    </div>
+                    <ul class="features">
+                        <li><i class="fas fa-check"></i> 100,000 requests/month</li>
+                        <li><i class="fas fa-check"></i> All API endpoints</li>
+                        <li><i class="fas fa-check"></i> Priority support</li>
+                        <li><i class="fas fa-check"></i> Higher rate limits</li>
+                    </ul>
+                    <button class="btn btn-primary">Start Pro Trial</button>
+                </div>
+                <div class="pricing-card">
+                    <h3>Enterprise</h3>
+                    <div class="price">
+                        <span class="currency">$</span>
+                        <span class="amount">199</span>
+                        <span class="period">/month</span>
+                    </div>
+                    <ul class="features">
+                        <li><i class="fas fa-check"></i> Unlimited requests</li>
+                        <li><i class="fas fa-check"></i> All API endpoints</li>
+                        <li><i class="fas fa-check"></i> 24/7 dedicated support</li>
+                        <li><i class="fas fa-check"></i> Custom integrations</li>
+                    </ul>
+                    <button class="btn btn-outline">Contact Sales</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- API Testing Modal -->
+    <div id="apiModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">API Testing</h3>
+                <button class="close-btn" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="apiTestArea"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-rocket"></i>
+                        <span>API Hub</span>
+                    </div>
+                    <p>Your comprehensive platform for powerful APIs</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Product</h4>
+                    <ul>
+                        <li><a href="#apis">APIs</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                        <li><a href="/docs">Documentation</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#blog">Blog</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#privacy">Privacy Policy</a></li>
+                        <li><a href="#terms">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 API Hub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
